@@ -1,6 +1,6 @@
+@file:Suppress("UNREACHABLE_CODE")
+
 import WallService.id
-import WallService.posts
-import java.util.Objects
 
 private val Any.id: Any
     get() {
@@ -28,32 +28,28 @@ data class Comments(
 )
 
 object WallService {
-    fun clear() {
-        posts = emptyArray()
-    }
-
-    var posts = emptyArray<Post>()
-        var id = 0L
-    }
+    private var posts = emptyArray<Post>()
+    private var id = 0L
 
 
 fun add(post: Post): Post {
     val updated = post.copy(id = ++id)
 posts += updated
     return updated
+    post.copy(++id, comments = post.comments.copy())
 }
 
 fun update(post: Post): Boolean {
     for (i in posts.indices) {
-        val current = setOf(post)
-        if (current.id == post) {
+        val current = posts[i]
+        if (current.id == post.id) {
             posts[i] = post
             return true
         }
     }
     return false
 }
-
+}
 
 
 

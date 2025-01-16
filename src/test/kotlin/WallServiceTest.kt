@@ -5,21 +5,32 @@ import org.junit.Test
  class WallServiceTest{
 
      @Test
-     fun updateExisting() {
+     fun addExisting() {
 
-         val service = WallService()
-         service.add(Post(1111111))
-         service.add(Post(2222222))
-         service.add(Post(3333333))
-         val update = Post(0L)
-         val result = service.update(update)
+         val service = WallService
+         val actual = service.add(Post(1111111))
+
+         assertTrue(actual.id != 0L)
      }
 
-     @Before
-     fun clearBeforeTest() {
-         WallService.clear()
+     @Test
+     fun updateExistingFalse() {
+
+         val service = WallService
+         val actual = service.update(Post(1111111))
+
+         assertFalse(actual)
      }
 
+     @Test
+     fun updateExistingTrue() {
+
+         val service = WallService
+         val addeds = service.add(Post(id = 1111111))
+         val actual = service.update(addeds.copy(text = "Test"))
+
+         assertTrue(actual)
+     }
 
 
  }
