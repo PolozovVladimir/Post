@@ -27,17 +27,16 @@ data class Comments(
     val canOpen: Boolean = true
 )
 
-object WallService {
+class WallService {
     private var posts = emptyArray<Post>()
     private var id = 0L
 
 
-fun add(post: Post): Post {
-    val updated = post.copy(id = ++id)
-posts += updated
-    return updated
-    post.copy(++id, comments = post.comments.copy())
-}
+    fun add(post: Post): Post {
+        val updated = post.copy(++id, comments = post.comments.copy())
+        posts += updated
+        return updated
+    }
 
 fun update(post: Post): Boolean {
     for (i in posts.indices) {
