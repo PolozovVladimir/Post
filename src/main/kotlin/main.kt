@@ -1,7 +1,5 @@
 @file:Suppress("UNREACHABLE_CODE")
 
-import WallService.id
-
 private val Any.id: Any
     get() {
         TODO("Not yet implemented")
@@ -17,8 +15,14 @@ data class Post(
     val replyOwerId: Int = 1,
     val replyPostId: Int = 1,
     val friendsOnly: Boolean = true,
-    val comments: Comments = Comments()
+    val comments: Comments = Comments(),
+    val reposts: Repost? = null,
 )
+data class Repost(
+    val count: Int = 1,
+    val userReposted: Boolean = false,
+)
+
 data class Comments(
     val count: Int = 1,
     val canPost: Boolean = true,
