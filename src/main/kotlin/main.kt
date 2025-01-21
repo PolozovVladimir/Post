@@ -17,6 +17,12 @@ data class Post(
     val friendsOnly: Boolean = true,
     val comments: Comments = Comments(),
     val reposts: Repost? = null,
+    val file: File = File(),
+    val audio: Audio = Audio(),
+    val sticker: Sticker = Sticker(),
+    val photo: Photo = Photo(),
+    val video: Video = Video(),
+
 )
 data class Repost(
     val count: Int = 1,
