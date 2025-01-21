@@ -29,6 +29,11 @@ import org.junit.Test
          assertTrue(actual)
      }
 
+     @Test(expected = PostNotFoundException::class)
+     fun shouldThrow() {
+         val comment = Comment(1, 1, 1, "comment")
+         WallService.createComment(3, comment)
+     }
 
  }
 
