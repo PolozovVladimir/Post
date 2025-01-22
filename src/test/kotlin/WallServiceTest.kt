@@ -1,7 +1,8 @@
 import org.junit.Assert.*
 import org.junit.Test
+import Comments as Comments1
 
- class WallServiceTest{
+class WallServiceTest{
 
      private val service = WallService()
      @Test
@@ -32,7 +33,14 @@ import org.junit.Test
      @Test(expected = PostNotFoundException::class)
      fun shouldThrow() {
          val comment = Comment(1, 1, 1, "comment")
-         WallService.createComment(3, comment)
+         service.createComment(3, comment)
+
+     }
+     @Test
+     fun shouldWork(){
+         val actual: Comment = service.createComment (1, comment = Comment(1,1,1,"comment"))
+
+         assertTrue(actual.id != 1)
      }
 
  }
